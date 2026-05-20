@@ -1,11 +1,19 @@
 {
-  "name": "crise-ebola-remotion",
+  "name": "crise-ebola-remotion-manual-images",
   "version": "1.0.0",
   "private": true,
-  "description": "Vídeo Remotion de 40 segundos sobre Ebola Bundibugyo, sem som e sem imagens externas.",
+  "description": "Vídeo Remotion de 30 segundos sobre Ebola Bundibugyo usando imagens manuais por cena.",
   "scripts": {
     "preview": "remotion studio src/Root.tsx",
     "render": "remotion render src/Root.tsx Main out/video.mp4",
+    "render:still:1": "remotion still src/Root.tsx Main out/still-01.png --frame=45",
+    "render:still:2": "remotion still src/Root.tsx Main out/still-02.png --frame=150",
+    "render:still:3": "remotion still src/Root.tsx Main out/still-03.png --frame=300",
+    "render:still:4": "remotion still src/Root.tsx Main out/still-04.png --frame=450",
+    "render:still:5": "remotion still src/Root.tsx Main out/still-05.png --frame=615",
+    "render:still:6": "remotion still src/Root.tsx Main out/still-06.png --frame=750",
+    "render:still:7": "remotion still src/Root.tsx Main out/still-07.png --frame=855",
+    "render:stills": "npm run render:still:1 && npm run render:still:2 && npm run render:still:3 && npm run render:still:4 && npm run render:still:5 && npm run render:still:6 && npm run render:still:7",
     "render:verbose": "remotion render src/Root.tsx Main out/video.mp4 --log=verbose"
   },
   "dependencies": {

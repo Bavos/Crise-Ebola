@@ -1,17 +1,1 @@
-import React from 'react';
-import {interpolate, useCurrentFrame} from 'remotion';
-
-type Props = {title: string; subtitle?: string; start: number};
-
-export const TitleBlock: React.FC<Props> = ({title, subtitle, start}) => {
-  const frame = useCurrentFrame() - start;
-  const y = interpolate(frame, [0, 20], [30, 0], {extrapolateRight: 'clamp'});
-  const opacity = interpolate(frame, [0, 15], [0, 1], {extrapolateRight: 'clamp'});
-
-  return (
-    <div style={{position: 'absolute', left: 130, top: 150, color: '#f5f7fb', opacity, transform: `translateY(${y}px)`}}>
-      <div style={{fontSize: 76, fontWeight: 900, letterSpacing: 2, lineHeight: 1.05, textTransform: 'uppercase'}}>{title}</div>
-      {subtitle && <div style={{marginTop: 18, fontSize: 34, color: '#c8d4df', maxWidth: 1180}}>{subtitle}</div>}
-    </div>
-  );
-};
+export const TitleBlock=({title,subtitle}:{title:string|string[];subtitle?:string})=><div style={{position:'absolute',left:90,top:90,color:'#F8FAFC',textTransform:'uppercase'}}>{(Array.isArray(title)?title:[title]).map((t)=><div key={t} style={{fontSize:128,fontWeight:900,lineHeight:1.02}}>{t}</div>)}{subtitle&&<div style={{marginTop:24,fontSize:56,fontWeight:700,color:'#94A3B8'}}>{subtitle}</div>}</div>;

@@ -1,0 +1,1 @@
+export const NetworkOverlay=()=> <svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0,opacity:.5}}><line x1='250' y1='820' x2='880' y2='420' stroke='#38BDF8'/><line x1='880' y1='420' x2='1600' y2='700' stroke='#FFC400'/><circle cx='880' cy='420' r='12' fill='#E11D2E'/></svg>;

@@ -2,6 +2,7 @@ name: Render video
 
 on:
   workflow_dispatch:
+  pull_request:
 
 jobs:
   render:
@@ -17,7 +18,32 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Verify manual scene images
+        run: |
+          test -f public/images/I1.png
+          test -f public/images/I2.png
+          test -f public/images/I3.png
+          test -f public/images/IR.png
+          test -f public/images/I5.png
+          test -f public/images/I6.png
+          test -f public/images/I7.png
+          echo "All manual scene images found."
+
+      - name: Verify image usage in source
+        run: |
+          grep -R "I1.png" -n src || exit 1
+          grep -R "I2.png" -n src || exit 1
+          grep -R "I3.png" -n src || exit 1
+          grep -R "IR.png" -n src || exit 1
+          grep -R "I5.png" -n src || exit 1
+          grep -R "I6.png" -n src || exit 1
+          grep -R "I7.png" -n src || exit 1
+          grep -R "id=\"Main\"" -n src || exit 1
+
+      - name: Render evidence stills
+        run: npm run render:stills
 
       - name: Render MP4
         run: npm run render
@@ -27,3 +53,9 @@ jobs:
         with:
           name: video-final
           path: out/video.mp4
+
+      - name: Upload evidence stills
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-stills
+          path: out/still-*.png

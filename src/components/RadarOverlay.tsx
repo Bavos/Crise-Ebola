@@ -1,0 +1,1 @@
+export const RadarOverlay=()=> <svg viewBox='0 0 1920 1080' style={{position:'absolute',inset:0,opacity:.35}}><circle cx='300' cy='340' r='110' stroke='#E11D2E' fill='none'/><circle cx='300' cy='340' r='200' stroke='#E11D2E' fill='none'/></svg>;

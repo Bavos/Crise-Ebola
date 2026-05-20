@@ -1,0 +1,3 @@
+import {AbsoluteFill, Img, useCurrentFrame} from 'remotion';
+import {sceneProgress} from '../utils/motion';
+export const ImagePanel=({src,start,end,panX=20,panY=-12}:{src:string;start:number;end:number;panX?:number;panY?:number})=>{const f=useCurrentFrame();const p=sceneProgress(f,start,end);return <AbsoluteFill><AbsoluteFill style={{transform:`scale(${1.06+p*0.08}) translate(${p*panX}px,${p*panY}px)`}}><Img src={src} style={{width:'100%',height:'100%',objectFit:'cover'}}/></AbsoluteFill><AbsoluteFill style={{background:'linear-gradient(180deg, rgba(5,7,12,.2), rgba(5,7,12,.65))'}}/><AbsoluteFill style={{boxShadow:'inset 0 0 220px rgba(0,0,0,.7)'}}/></AbsoluteFill>};
