@@ -1,18 +1,17 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
 
-export const TitleBlock: React.FC<{start: number; lines: string[]; subtitle?: string}> = ({start, lines, subtitle}) => {
+type Props = {title: string; subtitle?: string; start: number};
+
+export const TitleBlock: React.FC<Props> = ({title, subtitle, start}) => {
   const frame = useCurrentFrame() - start;
-  const opacity = interpolate(frame, [0, 10], [0, 1], {extrapolateRight: 'clamp'});
-  const y = interpolate(frame, [0, 16], [40, 0], {extrapolateRight: 'clamp'});
+  const y = interpolate(frame, [0, 20], [30, 0], {extrapolateRight: 'clamp'});
+  const opacity = interpolate(frame, [0, 15], [0, 1], {extrapolateRight: 'clamp'});
 
   return (
-    <div style={{position: 'absolute', left: 88, top: 92, opacity, transform: `translateY(${y}px)`, width: 1740}}>
-      <div style={{position: 'absolute', inset: -40, background: 'radial-gradient(circle at 30% 40%, rgba(242,183,5,.25), transparent 55%)', filter: 'blur(8px)'}} />
-      {lines.map((line) => (
-        <div key={line} style={{fontSize: 128, lineHeight: 1, fontWeight: 900, letterSpacing: 2, color: '#F8FAFC', textTransform: 'uppercase'}}>{line}</div>
-      ))}
-      {subtitle ? <div style={{marginTop: 30, fontSize: 56, color: '#d8e3f0', fontWeight: 700, maxWidth: 1580}}>{subtitle}</div> : null}
+    <div style={{position: 'absolute', left: 130, top: 150, color: '#f5f7fb', opacity, transform: `translateY(${y}px)`}}>
+      <div style={{fontSize: 76, fontWeight: 900, letterSpacing: 2, lineHeight: 1.05, textTransform: 'uppercase'}}>{title}</div>
+      {subtitle && <div style={{marginTop: 18, fontSize: 34, color: '#c8d4df', maxWidth: 1180}}>{subtitle}</div>}
     </div>
   );
 };
