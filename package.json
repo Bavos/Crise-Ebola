@@ -2,19 +2,26 @@
   "name": "crise-ebola-remotion",
   "version": "1.0.0",
   "private": true,
-  "description": "Vídeo Remotion sobre o alerta global do Ebola Bundibugyo em 2026",
+  "description": "Vídeo Remotion de 40 segundos sobre Ebola Bundibugyo, sem som e sem imagens externas.",
   "scripts": {
-    "preview": "remotion studio",
-    "render": "remotion render src/Root.tsx Main out/video.mp4"
+    "preview": "remotion studio src/Root.tsx",
+    "render": "remotion render src/Root.tsx Main out/video.mp4",
+    "render:verbose": "remotion render src/Root.tsx Main out/video.mp4 --log=verbose"
   },
   "dependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "remotion": "4.0.266"
+    "@remotion/cli": "^4.0.365",
+    "@remotion/bundler": "^4.0.365",
+    "@remotion/renderer": "^4.0.365",
+    "remotion": "^4.0.365",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "5.8.3",
-    "@types/react": "18.3.11",
-    "@types/node": "22.15.30"
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
