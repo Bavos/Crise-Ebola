@@ -14,8 +14,7 @@
     "render:still:6": "remotion still src/Root.tsx Main out/still-06.png --frame=750",
     "render:still:7": "remotion still src/Root.tsx Main out/still-07.png --frame=855",
     "render:stills": "npm run render:still:1 && npm run render:still:2 && npm run render:still:3 && npm run render:still:4 && npm run render:still:5 && npm run render:still:6 && npm run render:still:7",
-    "render:verbose": "remotion render src/Root.tsx Main out/video.mp4 --log=verbose",
-    "verify:images": "node scripts/verify-images.mjs"
+    "render:verbose": "remotion render src/Root.tsx Main out/video.mp4 --log=verbose"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.365",

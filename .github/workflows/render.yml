@@ -21,7 +21,15 @@ jobs:
         run: npm ci
 
       - name: Verify manual scene images
-        run: npm run verify:images
+        run: |
+          test -f public/images/I1.png
+          test -f public/images/I2.png
+          test -f public/images/I3.png
+          test -f public/images/IR.png
+          test -f public/images/I5.png
+          test -f public/images/I6.png
+          test -f public/images/I7.png
+          echo "All manual scene images found."
 
       - name: Verify image usage in source
         run: |
