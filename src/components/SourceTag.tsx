@@ -1,0 +1,1 @@
+export const SourceTag=({text}:{text:string})=><div style={{position:'absolute',right:90,bottom:42,fontSize:28,padding:'8px 14px',background:'rgba(5,7,12,.75)',color:'#38BDF8',border:'1px solid #38BDF8'}}>{text}</div>;

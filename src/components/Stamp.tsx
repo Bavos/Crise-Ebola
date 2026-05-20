@@ -1,13 +1,1 @@
-import React from 'react';
-import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-
-export const Stamp: React.FC<{text: string; start: number; color?: string}> = ({text, start, color = '#c5923d'}) => {
-  const frame = useCurrentFrame() - start;
-  const {fps} = useVideoConfig();
-  const s = spring({fps, frame, config: {damping: 9, stiffness: 160}});
-  return (
-    <div style={{position: 'absolute', right: 180, top: 120, border: `4px solid ${color}`, color, padding: '18px 26px', fontWeight: 900, fontSize: 38, letterSpacing: 2, transform: `rotate(-8deg) scale(${s})`, opacity: s}}>
-      {text}
-    </div>
-  );
-};
+export const Stamp=({text}:{text:string})=><div style={{position:'absolute',right:100,top:100,border:'3px solid #E11D2E',padding:'16px 22px',fontSize:48,fontWeight:900,color:'#E11D2E',transform:'rotate(-8deg)'}}>{text}</div>;
