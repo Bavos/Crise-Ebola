@@ -2,18 +2,19 @@ import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
 
 export const AbstractAfricaMap: React.FC<{start: number}> = ({start}) => {
-  const f = useCurrentFrame() - start;
-  const o = interpolate(f, [0, 14], [0, 1], {extrapolateRight: 'clamp'});
-  const p = 1 + Math.sin(f / 5) * 0.1;
+  const frame = useCurrentFrame() - start;
+  const pulse = 1 + Math.sin(frame / 4) * 0.08;
+  const pathOpacity = interpolate(frame, [0, 20], [0, 1], {extrapolateRight: 'clamp'});
+
   return (
-    <svg viewBox="0 0 1200 760" style={{position: 'absolute', left: 640, top: 150, width: 1220, opacity: o}}>
-      <path d="M346 84L468 98L604 162L720 226L784 346L760 458L708 604L590 678L446 640L324 560L240 430L214 312L258 210Z" fill="rgba(11,28,45,.92)" stroke="#94A3B8" strokeWidth="7"/>
-      <circle cx="628" cy="286" r={22 * p} fill="rgba(193,18,31,.25)" stroke="#C1121F" strokeWidth="6" />
-      <circle cx="628" cy="286" r="8" fill="#F8FAFC"/>
-      <circle cx="744" cy="262" r="8" fill="#38BDF8"/>
-      <line x1="628" y1="286" x2="744" y2="262" stroke="#F2B705" strokeWidth="6" strokeDasharray="14 10"/>
-      <text x="646" y="260" fill="#F8FAFC" fontSize="34" fontWeight="700">Ituri, RDC</text>
-      <text x="760" y="246" fill="#F8FAFC" fontSize="30" fontWeight="700">Kampala, Uganda</text>
+    <svg viewBox="0 0 900 700" style={{position: 'absolute', right: 90, top: 130, width: 780, opacity: pathOpacity}}>
+      <path d="M318 90L390 120L480 118L548 166L590 242L626 320L580 420L542 512L460 560L380 610L300 592L236 520L180 430L176 358L212 276L260 224L282 154Z" fill="rgba(24,33,44,0.85)" stroke="#94a3b8" strokeWidth="4"/>
+      <circle cx="500" cy="300" r={18 * pulse} fill="rgba(127,29,29,0.35)" stroke="#ef4444" strokeWidth="3"/>
+      <circle cx="500" cy="300" r="6" fill="#f8fafc"/>
+      <circle cx="590" cy="282" r="7" fill="#cbd5e1"/>
+      <line x1="500" y1="300" x2="590" y2="282" stroke="#c5923d" strokeWidth="3" strokeDasharray="10 8"/>
+      <text x="510" y="282" fill="#f8fafc" fontSize="22">Ituri</text>
+      <text x="606" y="270" fill="#f8fafc" fontSize="20">Uganda</text>
     </svg>
   );
 };

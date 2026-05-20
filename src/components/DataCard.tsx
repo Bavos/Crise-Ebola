@@ -1,17 +1,28 @@
 import React from 'react';
 import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 
-export const DataCard: React.FC<{start: number; x: number; value: number; label: string; tone?: 'gold' | 'red' | 'cyan'}> = ({start, x, value, label, tone = 'gold'}) => {
-  const frame = useCurrentFrame() - start;
+type Props = {label: string; value: number; suffix?: string; delay: number; tone?: 'gold' | 'red'};
+
+export const DataCard: React.FC<Props> = ({label, value, suffix = '', delay, tone = 'gold'}) => {
+  const frame = useCurrentFrame() - delay;
   const {fps} = useVideoConfig();
-  const s = spring({frame, fps, config: {damping: 12, stiffness: 140}});
-  const n = Math.round(interpolate(frame, [0, 26], [0, value], {extrapolateRight: 'clamp'}));
-  const border = tone === 'red' ? '#C1121F' : tone === 'cyan' ? '#38BDF8' : '#F2B705';
+  const scale = spring({fps, frame, config: {damping: 12, stiffness: 110}});
+  const shown = Math.round(interpolate(frame, [0, 25], [0, value], {extrapolateRight: 'clamp'}));
 
   return (
-    <div style={{position: 'absolute', left: x, top: 320, width: 560, height: 390, border: `4px solid ${border}`, background: 'linear-gradient(165deg, rgba(8,10,15,.95), rgba(11,28,45,.85))', borderRadius: 20, padding: 28, transform: `scale(${Math.max(0, s)})`}}>
-      <div style={{fontSize: 148, fontWeight: 900, color: '#F8FAFC', lineHeight: 1}}>{n}</div>
-      <div style={{fontSize: 44, color: '#cbd5e1', marginTop: 16, fontWeight: 700, textTransform: 'uppercase'}}>{label}</div>
+    <div
+      style={{
+        width: 420,
+        padding: '24px 26px',
+        borderRadius: 14,
+        border: `1px solid ${tone === 'gold' ? '#c5923d' : '#7f1d1d'}`,
+        background: tone === 'gold' ? 'rgba(30,22,11,0.85)' : 'rgba(37,12,12,0.86)',
+        color: '#f8fafc',
+        transform: `scale(${Math.max(0, scale)})`
+      }}
+    >
+      <div style={{fontSize: 54, fontWeight: 900}}>{shown}{suffix}</div>
+      <div style={{fontSize: 25, color: '#cbd5e1'}}>{label}</div>
     </div>
   );
 };
